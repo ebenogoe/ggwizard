@@ -43,9 +43,9 @@ mod_plotconfig_ui <- function(id) {
       bslib::card(
         bslib::card_header(
           shiny::div(
-            class = "d-flex align-items-center justify-content-between",
+            class = "d-flex align-items-center justify-content-between gap-3",
             shiny::strong("Live preview"),
-            shiny::span(class = "badge bg-secondary small", "Updates automatically")
+            shiny::span(class = "badge bg-secondary fw-normal small", "Updates automatically")
           )
         ),
         bslib::card_body(

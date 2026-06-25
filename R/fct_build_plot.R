@@ -128,6 +128,15 @@ apply_theme <- function(p, cfg) {
     )
   }
 
+  # X axis label angle
+  x_angle <- cfg$x_axis_angle %||% 0
+  if (!is.na(x_angle) && x_angle != 0) {
+    vjust <- if (x_angle == 90) 0.5 else 1
+    grid_overrides <- grid_overrides + ggplot2::theme(
+      axis.text.x = ggplot2::element_text(angle = x_angle, hjust = 1, vjust = vjust)
+    )
+  }
+
   # Legend position
   legend_pos <- cfg$legend_pos %||% "bottom"
   grid_overrides <- grid_overrides + ggplot2::theme(

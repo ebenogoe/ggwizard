@@ -83,11 +83,16 @@ generate_script <- function(file_path, sheet, plot_cfg, custom_cfg) {
   ) else ""
 
   show_axis  <- !isFALSE(custom_cfg$show_axis_lines)
+  x_angle    <- custom_cfg$x_axis_angle %||% 0
   grid_lines <- c()
   grid_lines <- c(grid_lines, if (show_axis) '    axis.line = element_line(colour = "grey30", linewidth = 0.4)'
                               else           "    axis.line = element_blank()")
   if (!isTRUE(custom_cfg$show_major_grid)) grid_lines <- c(grid_lines, "    panel.grid.major = element_blank()")
   if (!isTRUE(custom_cfg$show_minor_grid)) grid_lines <- c(grid_lines, "    panel.grid.minor = element_blank()")
+  if (!is.na(x_angle) && x_angle != 0) {
+    vjust <- if (x_angle == 90) 0.5 else 1
+    grid_lines <- c(grid_lines, sprintf("    axis.text.x = element_text(angle = %g, hjust = 1, vjust = %g)", x_angle, vjust))
+  }
   grid_theme <- if (length(grid_lines)) paste0("  theme(\n", paste(grid_lines, collapse = ",\n"), "\n  ) +") else ""
 
   paste0(

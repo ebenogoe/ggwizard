@@ -86,7 +86,13 @@ mod_customize_ui <- function(id) {
           icon = bsicons::bs_icon("grid"),
           shinyWidgets::materialSwitch(ns("show_axis_lines"),  "Show axis lines",       value = TRUE,  status = "primary"),
           shinyWidgets::materialSwitch(ns("show_major_grid"),  "Show major grid lines", value = TRUE,  status = "primary"),
-          shinyWidgets::materialSwitch(ns("show_minor_grid"),  "Show minor grid lines", value = FALSE, status = "primary")
+          shinyWidgets::materialSwitch(ns("show_minor_grid"),  "Show minor grid lines", value = FALSE, status = "primary"),
+          shiny::selectInput(
+            ns("x_axis_angle"),
+            label   = gw_tooltip("X axis label angle", "Rotate X axis tick labels -- useful when labels are long or overlapping"),
+            choices = c("Horizontal (0)" = "0", "Angled (45)" = "45", "Vertical (90)" = "90"),
+            selected = "0"
+          )
         ),
 
         # Plot-type-specific section
@@ -170,6 +176,7 @@ mod_customize_server <- function(id, rv) {
         show_axis_lines  = isTRUE(input$show_axis_lines),
         show_major_grid  = isTRUE(input$show_major_grid),
         show_minor_grid  = isTRUE(input$show_minor_grid),
+        x_axis_angle     = as.numeric(input$x_axis_angle %||% "0"),
         point_size       = input$point_size,
         point_shape      = input$point_shape,
         line_width       = input$line_width,
