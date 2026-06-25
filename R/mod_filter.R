@@ -210,12 +210,18 @@ mod_filter_server <- function(id, rv) {
       num_cols <- names(types)[types == "numeric"]
       if (!length(num_cols))
         return(shiny::p("No numeric columns detected.", class = "text-muted small"))
-      shiny::selectInput(
+      shinyWidgets::pickerInput(
         session$ns("outlier_cols"),
         label    = gw_tooltip("Columns to scan", "Z-scores are computed per column. A row is flagged if it exceeds the threshold in ANY selected column."),
         choices  = num_cols,
         selected = num_cols,
-        multiple = TRUE
+        multiple = TRUE,
+        options  = shinyWidgets::pickerOptions(
+          actionsBox          = TRUE,
+          liveSearch          = TRUE,
+          selectedTextFormat  = "count > 2",
+          countSelectedText   = "{0} columns selected"
+        )
       )
     })
 
