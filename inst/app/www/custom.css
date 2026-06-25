@@ -1,0 +1,525 @@
+/* ============================================================
+   ggWizard — custom stylesheet
+   Loaded via golem_add_external_resources() / bundle_resources()
+   ============================================================ */
+
+/* ── Root variables ─────────────────────────────────────────── */
+:root {
+  --gw-primary:    #4F46E5;
+  --gw-primary-lt: #EEF2FF;
+  --gw-success:    #059669;
+  --gw-success-lt: #ECFDF5;
+  --gw-warning:    #D97706;
+  --gw-warning-lt: #FFFBEB;
+  --gw-danger:     #DC2626;
+  --gw-bg:         #F9FAFB;
+  --gw-surface:    #FFFFFF;
+  --gw-border:     #E5E7EB;
+  --gw-text:       #1A1D2E;
+  --gw-muted:      #6B7280;
+  --gw-topbar-h:   60px;
+  --gw-sidebar-w:  230px;
+}
+
+/* ── Global resets ──────────────────────────────────────────── */
+body {
+  background-color: var(--gw-bg) !important;
+  color: var(--gw-text);
+}
+
+.container-fluid {
+  padding-top: 0 !important;
+}
+
+/* ── Top bar ────────────────────────────────────────────────── */
+.gw-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  height: var(--gw-topbar-h);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 24px;
+  background: var(--gw-surface);
+  border-bottom: 1px solid var(--gw-border);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.gw-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--gw-primary) !important;
+  text-decoration: none !important;
+  letter-spacing: -0.3px;
+}
+
+.gw-brand svg { vertical-align: middle; }
+
+.spacer { flex: 1; }
+
+.gw-nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gw-muted) !important;
+  text-decoration: none !important;
+  padding: 5px 12px;
+  border-radius: 8px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.gw-nav-link:hover {
+  color: var(--gw-primary) !important;
+  background: var(--gw-primary-lt);
+}
+
+/* Resume button — shown in topbar when user navigates away mid-wizard */
+.gw-resume-btn {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--gw-primary) !important;
+  background: var(--gw-primary-lt) !important;
+  border: 1.5px solid var(--gw-primary) !important;
+  border-radius: 8px !important;
+  padding: 4px 12px !important;
+  line-height: 1.4;
+  margin-right: 6px;
+  box-shadow: none !important;
+  transition: background 0.15s, color 0.15s;
+}
+
+.gw-resume-btn:hover,
+.gw-resume-btn:focus {
+  background: var(--gw-primary) !important;
+  color: white !important;
+  border-color: var(--gw-primary) !important;
+}
+
+/* Push page content below the fixed topbar */
+.bslib-page-fluid,
+.bslib-page-fill {
+  padding-top: calc(var(--gw-topbar-h) + 8px) !important;
+}
+
+/* ── Welcome screen ─────────────────────────────────────────── */
+.gw-welcome-wrap {
+  min-height: calc(100vh - var(--gw-topbar-h));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative background blob */
+.gw-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% -10%, #EEF2FF 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gw-hero {
+  text-align: center;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.gw-hero-icon {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, var(--gw-primary) 0%, #7C3AED 100%);
+  border-radius: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 28px rgba(79, 70, 229, 0.30);
+}
+
+.gw-hero-title {
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--gw-text);
+  margin-bottom: 10px;
+}
+
+.gw-hero-tagline {
+  font-size: 17px;
+  color: var(--gw-muted);
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* Action cards */
+.gw-card-action {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  border: 1.5px solid var(--gw-border) !important;
+  cursor: pointer;
+}
+
+.gw-card-action:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 24px rgba(79, 70, 229, 0.12) !important;
+  border-color: var(--gw-primary) !important;
+}
+
+.gw-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+/* Keep action card text colours regardless of link state */
+.text-decoration-none .card-body h4 { color: var(--gw-text); }
+.text-decoration-none .card-body p  { color: var(--gw-muted); }
+
+/* ── Wizard layout ──────────────────────────────────────────── */
+.gw-sidebar {
+  background: var(--gw-surface) !important;
+  border-right: 1px solid var(--gw-border) !important;
+}
+
+.gw-sidebar-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gw-muted);
+  margin-bottom: 10px;
+  padding: 0 4px;
+}
+
+.gw-wizard-main {
+  padding: 8px 4px;
+  min-height: calc(100vh - var(--gw-topbar-h));
+}
+
+/* ── Stepper ────────────────────────────────────────────────── */
+.gw-stepper {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.gw-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin-bottom: 2px;
+  font-size: 13px;
+  color: var(--gw-muted);
+  transition: background 0.15s;
+}
+
+.gw-step.active {
+  background: var(--gw-primary-lt);
+  color: var(--gw-primary);
+  font-weight: 600;
+}
+
+.gw-step.done {
+  color: var(--gw-success);
+}
+
+.gw-step-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+
+.gw-step.active .gw-step-num {
+  background: var(--gw-primary);
+  border-color: var(--gw-primary);
+  color: white;
+}
+
+.gw-step.done .gw-step-num {
+  background: var(--gw-success);
+  border-color: var(--gw-success);
+  color: white;
+}
+
+/* ── Step header ────────────────────────────────────────────── */
+.gw-step-header {
+  margin-bottom: 20px;
+}
+
+.gw-step-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gw-text);
+  margin-bottom: 4px;
+}
+
+/* ── Metric tiles ───────────────────────────────────────────── */
+.gw-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.gw-metric {
+  background: var(--gw-surface);
+  border: 1px solid var(--gw-border);
+  border-radius: 10px;
+  padding: 14px 12px;
+}
+
+.gw-metric-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gw-muted);
+  margin-bottom: 4px;
+}
+
+.gw-metric-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--gw-text);
+  line-height: 1.1;
+}
+
+/* ── Help icon ──────────────────────────────────────────────── */
+.gw-help {
+  color: var(--gw-muted);
+  font-size: 13px;
+  cursor: help;
+  vertical-align: middle;
+}
+
+/* ── File drop zone ─────────────────────────────────────────── */
+.gw-file-drop .form-group {
+  border: 2px dashed #C7D2FE;
+  border-radius: 12px;
+  padding: 16px;
+  background: #FAFAFE;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.gw-file-drop .form-group:hover {
+  border-color: var(--gw-primary);
+  background: var(--gw-primary-lt);
+}
+
+/* ── Content pages (Help / About) ───────────────────────────── */
+.gw-content-page {
+  max-width: 740px;
+  margin: 28px auto;
+  padding: 0 16px 64px;
+}
+
+.gw-content-page h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.gw-content-page h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gw-text);
+  margin-top: 20px;
+  margin-bottom: 6px;
+}
+
+.gw-content-page p,
+.gw-content-page li {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #374151;
+}
+
+/* ── Log preview (verbatimTextOutput) ───────────────────────── */
+.shiny-text-output.shiny-bound-output {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  line-height: 1.65;
+  background: #0F172A;
+  color: #94A3B8;
+  border-radius: 8px;
+  border: none;
+  padding: 12px 14px;
+  white-space: pre;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+/* ── Accordion tweaks ───────────────────────────────────────── */
+.accordion-button:not(.collapsed) {
+  color: var(--gw-primary);
+  background: var(--gw-primary-lt);
+  box-shadow: none;
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* ── Button overrides ───────────────────────────────────────── */
+/*
+ * Scope the filled-primary override to standalone buttons only.
+ * Buttons inside a btn-group (toggle groups) need distinct on/off states
+ * and must NOT get the blanket !important fill, or all states look identical.
+ */
+.btn-primary:not(.btn-group .btn-primary):not(.btn-group-toggle .btn-primary) {
+  background-color: var(--gw-primary) !important;
+  border-color: var(--gw-primary) !important;
+}
+
+.btn-primary:hover {
+  background-color: #4338CA !important;
+  border-color: #4338CA !important;
+}
+
+/* Toggle button groups (checkboxGroupButtons) — clear on / off visual */
+.btn-group .btn-primary,
+.btn-group-toggle .btn-primary {
+  background-color: white;
+  color: var(--gw-primary);
+  border-color: var(--gw-primary);
+  transition: background-color 0.15s, color 0.15s;
+}
+
+/* OFF state: outlined, white fill */
+.btn-group .btn-primary:not(.active),
+.btn-group-toggle .btn-primary:not(.active) {
+  background-color: white !important;
+  color: var(--gw-primary) !important;
+  border-color: var(--gw-primary) !important;
+}
+
+/* ON state: filled, white text */
+.btn-group .btn-primary.active,
+.btn-group-toggle .btn-primary.active {
+  background-color: var(--gw-primary) !important;
+  color: white !important;
+  border-color: var(--gw-primary) !important;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Bootstrap 5 btn-check pattern (used in some shinyWidgets versions) */
+.btn-check:not(:checked) + .btn-primary {
+  background-color: white !important;
+  color: var(--gw-primary) !important;
+  border-color: var(--gw-primary) !important;
+}
+
+.btn-check:checked + .btn-primary {
+  background-color: var(--gw-primary) !important;
+  color: white !important;
+  border-color: var(--gw-primary) !important;
+}
+
+.btn-success {
+  background-color: var(--gw-success) !important;
+  border-color: var(--gw-success) !important;
+}
+
+/* ── Card polish ────────────────────────────────────────────── */
+.card {
+  border-color: var(--gw-border) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  background: #FAFAFA !important;
+  border-bottom: 1px solid var(--gw-border) !important;
+  font-size: 13px;
+}
+
+/* ── materialSwitch label spacing ───────────────────────────── */
+.sw-btn { cursor: pointer; }
+
+/* ── DT table tweaks ────────────────────────────────────────── */
+.dataTables_wrapper .dataTables_filter input {
+  border: 1.5px solid var(--gw-border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 13px;
+}
+
+/* Fix "Show X entries" dropdown — give enough room for the arrow */
+.dataTables_wrapper .dataTables_length select {
+  padding: 3px 28px 3px 8px !important;
+  min-width: 70px;
+  -webkit-appearance: auto;
+  appearance: auto;
+}
+
+table.dataTable thead th {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gw-muted);
+  background: #FAFAFA;
+}
+
+table.dataTable tbody tr:hover {
+  background: var(--gw-primary-lt) !important;
+}
+
+/* ── bslib sidebar layout — offset from fixed topbar ────────── */
+/*
+ * bslib applies `position: sticky; top: 0; height: 100vh` to the sidebar
+ * panel, which causes it to sit behind the fixed topbar. Override so the
+ * sticky threshold and height both account for the navbar.
+ */
+.bslib-sidebar-layout > .bslib-sidebar-panel {
+  top: var(--gw-topbar-h) !important;
+  max-height: calc(100vh - var(--gw-topbar-h)) !important;
+}
+
+/* Sidebar inner scroll area */
+.bslib-sidebar-layout .sidebar-content {
+  top: var(--gw-topbar-h) !important;
+  max-height: calc(100vh - var(--gw-topbar-h)) !important;
+  overflow-y: auto;
+}
+
+/* Main panel: push content down so the first element clears the navbar */
+.bslib-sidebar-layout > .bslib-main {
+  padding-top: 20px !important;
+  overflow-y: auto;
+  max-height: calc(100vh - var(--gw-topbar-h));
+}
+
+/* Anchor-scroll / programmatic scroll lands below the navbar */
+.gw-step-header {
+  scroll-margin-top: calc(var(--gw-topbar-h) + 8px);
+}
+
+/* ── Responsive stacks ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .gw-metrics-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gw-hero-title { font-size: 30px; }
+}

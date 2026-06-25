@@ -1,0 +1,50 @@
+Package: ggwizard
+Title: Create Beautiful ggplot2 Charts Without Coding
+Version: 0.1.0
+Authors@R:
+    person(given = "Ebenezer",
+           family = "Ogoe",
+           role = c("aut", "cre"),
+           email = "ebenezerogoe@gmail.com")
+Description: A point-and-click Shiny application that guides non-programmers
+    through importing CSV or Excel data, previewing it, and generating
+    publication-quality ggplot2 charts. Supports bar, line, scatter, time
+    series, histogram, box, violin, and area plots with full customisation
+    of labels, themes, colours, and font styles. Outputs are saved to a
+    timestamped folder along with a reproducible R script and a run log.
+License: MIT + file LICENSE
+URL: https://github.com/ebenogoe/ggwizard
+BugReports: https://github.com/ebenogoe/ggwizard/issues
+Depends:
+    R (>= 4.1.0)
+Imports:
+    bsicons,
+    bslib (>= 0.5.0),
+    colourpicker,
+    config (>= 0.3.1),
+    DT,
+    fontawesome,
+    fs,
+    ggplot2,
+    golem (>= 0.5.1),
+    htmltools,
+    plotly,
+    readr,
+    readxl,
+    rlang,
+    scales,
+    shiny (>= 1.7.0),
+    shinybusy,
+    shinyFiles,
+    shinyjs,
+    shinyWidgets,
+    stats,
+    utils,
+    zip
+Suggests:
+    testthat (>= 3.0.0)
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+RoxygenNote: 7.3.3
+Config/testthat/edition: 3

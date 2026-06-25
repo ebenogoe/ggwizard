@@ -1,0 +1,31 @@
+# R package build artifacts
+*.Rproj.user
+*.Rhistory
+*.RData
+*.Ruserdata
+.Rproj.user/
+
+# devtools / roxygen / check output
+/doc/
+/Meta/
+.Rd2pdf*/
+*.tar.gz
+*.zip
+
+# R check directory
+/check/
+
+# Byte-compiled / optimized
+*.pyc
+__pycache__/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Sensitive / environment
+.Renviron
+.env
+
+# Claude Code session data
+.claude/
