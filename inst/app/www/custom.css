@@ -107,6 +107,10 @@ body {
 }
 
 /* ── Welcome screen ─────────────────────────────────────────── */
+@keyframes gw-float {
+  0%, 100% { transform: translateY(0);    }
+  50%       { transform: translateY(-9px); }
+}
 .gw-welcome-wrap {
   min-height: calc(100vh - var(--gw-topbar-h));
   display: flex;
@@ -132,6 +136,7 @@ body {
   margin-bottom: 48px;
   position: relative;
   z-index: 1;
+  animation: gw-float 4s ease-in-out infinite;
 }
 
 .gw-hero-icon {
