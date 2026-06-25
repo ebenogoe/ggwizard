@@ -106,7 +106,7 @@ A sample Excel file is bundled with the package for testing:
 system.file("extdata", "lincoln_bacteria_monitoring.xlsx", package = "ggwizard")
 ```
 
-It contains three sheets of bacterial monitoring data from eight sites in Lincoln, Nebraska (268 sampling events, 18 variables including E. coli, Total Coliform, Enterococcus, water quality parameters, and site metadata).
+It contains three sheets of bacterial monitoring data (simulated) from eight sites in Lincoln, Nebraska (268 sampling events, 18 variables including E. coli, Total Coliform, Enterococcus, water quality parameters, and site metadata).
 
 ---
 
