@@ -90,7 +90,7 @@ mod_filter_ui <- function(id) {
               shiny::strong("Filter summary"),
               shiny::actionButton(
                 ns("reset_filters"),
-                shiny::tagList(bsicons::bs_icon("arrow-rotate-left"), " Reset all"),
+                shiny::tagList(bsicons::bs_icon("arrow-counterclockwise"), " Reset all"),
                 class = "btn-outline-danger btn-sm"
               )
             )
