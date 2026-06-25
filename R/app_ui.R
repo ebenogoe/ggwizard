@@ -57,9 +57,10 @@ gw_wizard_ui <- function() {
         id = "wizard_nav",
         bslib::nav_panel_hidden("s1", mod_import_ui("import")),
         bslib::nav_panel_hidden("s2", mod_preview_ui("preview")),
-        bslib::nav_panel_hidden("s3", mod_plotconfig_ui("plotconfig")),
-        bslib::nav_panel_hidden("s4", mod_customize_ui("customize")),
-        bslib::nav_panel_hidden("s5", mod_export_ui("export"))
+        bslib::nav_panel_hidden("s3", mod_filter_ui("filter")),
+        bslib::nav_panel_hidden("s4", mod_plotconfig_ui("plotconfig")),
+        bslib::nav_panel_hidden("s5", mod_customize_ui("customize")),
+        bslib::nav_panel_hidden("s6", mod_export_ui("export"))
       )
     )
   )

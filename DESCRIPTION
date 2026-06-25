@@ -35,6 +35,7 @@ Imports:
     shinyFiles,
     shinyjs,
     shinyWidgets,
+    stats,
     utils
 Suggests:
     testthat (>= 3.0.0)

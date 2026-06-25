@@ -11,11 +11,12 @@ mod_help_ui <- function(id) {
     shiny::hr(),
 
     shiny::h4("Getting started"),
-    shiny::p("Click Get Started on the home screen to launch the wizard. The wizard walks you through five steps:"),
+    shiny::p("Click Get Started on the home screen to launch the wizard. The wizard walks you through six steps:"),
     shiny::tags$ol(
       class = "mb-3",
       shiny::tags$li(shiny::strong("Import Data"), " - Upload a CSV or Excel file."),
       shiny::tags$li(shiny::strong("Preview"), " - Verify your data loaded correctly before continuing."),
+      shiny::tags$li(shiny::strong("Filter & QC"), " - Optionally exclude columns, remove outliers by Z-score, or flag groups with high replicate variance. You can skip this step if no cleaning is needed."),
       shiny::tags$li(shiny::strong("Configure Plot"), " - Choose a chart type and map your columns to axes."),
       shiny::tags$li(shiny::strong("Customise"), " - Adjust labels, fonts, colours, and themes."),
       shiny::tags$li(shiny::strong("Export"), " - Save your plot and optional R script to a folder of your choice.")

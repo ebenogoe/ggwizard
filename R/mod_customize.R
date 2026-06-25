@@ -257,9 +257,9 @@ mod_customize_server <- function(id, rv) {
         generate_script(rv$file_info$datapath, rv$file_info$sheet_used, rv$plot_cfg, cfg),
         error = function(e) NULL
       )
-      rv$step <- 5L
+      rv$step <- 6L
     })
 
-    shiny::observeEvent(input$back, rv$step <- 3L)
+    shiny::observeEvent(input$back, rv$step <- 4L)
   })
 }

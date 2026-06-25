@@ -247,20 +247,22 @@ mod_export_server <- function(id, rv) {
     )
 
     shiny::observeEvent(input$restart_btn, {
-      rv$screen     <- "welcome"
-      rv$step       <- 1L
-      rv$raw_data   <- NULL
-      rv$col_types  <- NULL
-      rv$file_info  <- list()
-      rv$plot_cfg   <- list()
-      rv$custom_cfg <- list()
-      rv$plot_obj   <- NULL
-      rv$interactive <- FALSE
-      rv$run_dir    <- NULL
-      rv$logger     <- NULL
-      rv$script_txt <- NULL
+      rv$screen              <- "welcome"
+      rv$step                <- 1L
+      rv$raw_data            <- NULL
+      rv$raw_data_original   <- NULL
+      rv$col_types           <- NULL
+      rv$col_types_original  <- NULL
+      rv$file_info           <- list()
+      rv$plot_cfg            <- list()
+      rv$custom_cfg          <- list()
+      rv$plot_obj            <- NULL
+      rv$interactive         <- FALSE
+      rv$run_dir             <- NULL
+      rv$logger              <- NULL
+      rv$script_txt          <- NULL
     })
 
-    shiny::observeEvent(input$back, rv$step <- 4L)
+    shiny::observeEvent(input$back, rv$step <- 5L)
   })
 }

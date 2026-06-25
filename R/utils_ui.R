@@ -46,7 +46,7 @@ gw_metric <- function(label, value, colour = NULL) {
 #' Wizard step sidebar highlighting the current step
 #' @noRd
 gw_stepper <- function(current) {
-  steps <- c("Import Data", "Preview", "Configure Plot", "Customise", "Export")
+  steps <- c("Import Data", "Preview", "Filter & QC", "Configure Plot", "Customise", "Export")
   items <- lapply(seq_along(steps), function(i) {
     cls  <- if (i == current) "gw-step active" else if (i < current) "gw-step done" else "gw-step"
     icon <- if (i < current) bsicons::bs_icon("check-lg") else as.character(i)

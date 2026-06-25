@@ -173,8 +173,10 @@ mod_import_server <- function(id, rv) {
         return()
       }
 
-      rv$raw_data  <- result$data
-      rv$col_types <- result$col_types
+      rv$raw_data            <- result$data
+      rv$raw_data_original   <- result$data
+      rv$col_types           <- result$col_types
+      rv$col_types_original  <- result$col_types
       rv$file_info <- list(
         name         = input$file$name,
         datapath     = input$file$datapath,

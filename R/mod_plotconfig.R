@@ -170,9 +170,9 @@ mod_plotconfig_server <- function(id, rv) {
         cfg$plot_type, cfg$x_var %||% "-",
         cfg$y_var %||% "-", cfg$group_var %||% "none"
       ))
-      rv$step <- 4L
+      rv$step <- 5L
     })
 
-    shiny::observeEvent(input$back, rv$step <- 2L)
+    shiny::observeEvent(input$back, rv$step <- 3L)
   })
 }

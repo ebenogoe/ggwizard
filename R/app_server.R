@@ -7,24 +7,27 @@
 app_server <- function(input, output, session) {
 
   rv <- shiny::reactiveValues(
-    screen     = "welcome",
-    step       = 1L,
-    raw_data   = NULL,
-    col_types  = NULL,
-    file_info  = list(),
-    plot_cfg   = list(),
-    custom_cfg = list(),
-    plot_obj   = NULL,
-    interactive = FALSE,
-    run_dir    = NULL,
-    logger     = NULL,
-    script_txt = NULL
+    screen             = "welcome",
+    step               = 1L,
+    raw_data           = NULL,
+    raw_data_original  = NULL,
+    col_types          = NULL,
+    col_types_original = NULL,
+    file_info          = list(),
+    plot_cfg           = list(),
+    custom_cfg         = list(),
+    plot_obj           = NULL,
+    interactive        = FALSE,
+    run_dir            = NULL,
+    logger             = NULL,
+    script_txt         = NULL
   )
 
   # Screen modules
   mod_welcome_server("welcome",   rv)
   mod_import_server("import",     rv)
   mod_preview_server("preview",   rv)
+  mod_filter_server("filter",     rv)
   mod_plotconfig_server("plotconfig", rv)
   mod_customize_server("customize",   rv)
   mod_export_server("export",     rv)
