@@ -17,12 +17,6 @@ ggWizard is a five-step Shiny wizard that lets anyone import a CSV or Excel file
 
 ---
 
-## About
-
-ggWizard was built to lower the barrier to data visualisation for researchers, analysts, and students who work with tabular data but are not fluent in R code. The five-step wizard guides users from raw file to finished chart -- handling import, data inspection, plot configuration, appearance customisation, and export -- all from a browser interface. Outputs include the chart in one or more image formats, a run log, and a self-contained R script that reproduces the plot exactly, so results are always traceable and shareable.
-
----
-
 ## Features
 
 **Import**
