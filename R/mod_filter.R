@@ -26,7 +26,7 @@ mod_filter_ui <- function(id) {
         # Column selection ---------------------------------------------------
         bslib::accordion_panel(
           "Column selection",
-          icon = bsicons::bs_icon("table-columns"),
+          icon = bsicons::bs_icon("columns"),
           shiny::p("Uncheck any columns you want to exclude from your analysis.", class = "text-muted small"),
           shiny::div(
             class = "d-flex gap-2 mb-2",
