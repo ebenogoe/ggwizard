@@ -92,6 +92,24 @@ mod_customize_ui <- function(id) {
             label   = gw_tooltip("X axis label angle", "Rotate X axis tick labels -- useful when labels are long or overlapping"),
             choices = c("Horizontal (0)" = "0", "Angled (45)" = "45", "Vertical (90)" = "90"),
             selected = "0"
+          ),
+          shiny::hr(class = "my-2"),
+          shiny::tags$label(gw_tooltip("Y-axis range", "Fix the lower and/or upper bound of the Y axis. Leave blank to use data range."), class = "form-label small fw-semibold d-block"),
+          bslib::layout_columns(
+            col_widths = c(6, 6),
+            shiny::textInput(ns("y_min"), label = NULL, placeholder = "Min (auto)"),
+            shiny::textInput(ns("y_max"), label = NULL, placeholder = "Max (auto)")
+          ),
+          shiny::textInput(
+            ns("y_break_step"),
+            label       = gw_tooltip("Y-axis break interval", "Spacing between Y axis tick marks (e.g. 10 for ticks at 0, 10, 20 ...). Leave blank for automatic."),
+            placeholder = "Auto"
+          ),
+          shiny::tags$label(gw_tooltip("X-axis range (numeric only)", "Fix the lower and/or upper bound of the X axis. Only applies when the X axis is continuous/numeric."), class = "form-label small fw-semibold d-block mt-1"),
+          bslib::layout_columns(
+            col_widths = c(6, 6),
+            shiny::textInput(ns("x_min"), label = NULL, placeholder = "Min (auto)"),
+            shiny::textInput(ns("x_max"), label = NULL, placeholder = "Max (auto)")
           )
         ),
 
@@ -148,7 +166,11 @@ mod_customize_server <- function(id, rv) {
           shiny::sliderInput(ns("hist_bins"), "Number of bins", min = 5, max = 100, value = 30, step = 5),
           shinyWidgets::materialSwitch(ns("hist_outline"), "Show bin outline", value = TRUE, status = "primary")
         ),
-        "Box"    = shinyWidgets::materialSwitch(ns("box_outliers"), "Show outlier points", value = TRUE, status = "primary"),
+        "Box" = shiny::tagList(
+          shinyWidgets::materialSwitch(ns("box_outliers"), "Show outlier points", value = TRUE,  status = "primary"),
+          shinyWidgets::materialSwitch(ns("box_median"),   "Show median line",    value = TRUE,  status = "primary"),
+          shinyWidgets::materialSwitch(ns("box_mean"),     "Overlay mean diamond",value = FALSE, status = "primary")
+        ),
         "Violin" = shinyWidgets::materialSwitch(ns("violin_trim"),  "Trim violin tails",   value = FALSE, status = "primary"),
         shiny::p("No additional options for this plot type.", class = "text-muted small")
       )
@@ -184,7 +206,14 @@ mod_customize_server <- function(id, rv) {
         bar_width        = input$bar_width,
         hist_bins        = input$hist_bins,
         hist_outline     = isTRUE(input$hist_outline),
-        box_outliers     = isTRUE(input$box_outliers)
+        box_outliers     = isTRUE(input$box_outliers),
+        box_median       = if (!is.null(input$box_median)) isTRUE(input$box_median) else TRUE,
+        box_mean         = isTRUE(input$box_mean),
+        y_min            = parse_lim(input$y_min),
+        y_max            = parse_lim(input$y_max),
+        y_break_step     = parse_lim(input$y_break_step),
+        x_min            = parse_lim(input$x_min),
+        x_max            = parse_lim(input$x_max)
       )
     })
 

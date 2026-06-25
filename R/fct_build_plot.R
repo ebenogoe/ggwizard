@@ -52,10 +52,20 @@ build_plot <- function(data, plot_cfg, custom_cfg) {
       bins  = custom_cfg$hist_bins   %||% 30,
       colour = if (isTRUE(custom_cfg$hist_outline)) "white" else NA
     ),
-    "Box"         = p + ggplot2::geom_boxplot(
-      outlier.shape = if (isTRUE(custom_cfg$box_outliers)) 19 else NA,
-      width = 0.6
-    ),
+    "Box" = {
+      box_p <- suppressWarnings(p + ggplot2::geom_boxplot(
+        outlier.shape = if (isTRUE(custom_cfg$box_outliers)) 19 else NA,
+        fatten        = if (!isFALSE(custom_cfg$box_median)) 2 else 0,
+        width         = 0.6
+      ))
+      if (isTRUE(custom_cfg$box_mean)) {
+        box_p <- box_p + ggplot2::stat_summary(
+          fun = mean, geom = "point", shape = 23,
+          fill = "white", colour = "grey30", size = 3
+        )
+      }
+      box_p
+    },
     "Violin"      = p + ggplot2::geom_violin(trim = FALSE),
     "Area"        = p + ggplot2::geom_area(alpha = 0.6),
     p + ggplot2::geom_point()
@@ -85,6 +95,31 @@ build_plot <- function(data, plot_cfg, custom_cfg) {
 
   # Labels
   p <- apply_labels(p, custom_cfg)
+
+  # Axis scale overrides (limits and breaks)
+  has_y <- !is.null(custom_cfg$y_min) || !is.null(custom_cfg$y_max) || !is.null(custom_cfg$y_break_step)
+  has_x <- !is.null(custom_cfg$x_min) || !is.null(custom_cfg$x_max)
+  if (has_y) {
+    breaks_fn <- if (!is.null(custom_cfg$y_break_step)) {
+      step <- custom_cfg$y_break_step
+      function(x) seq(floor(x[1] / step) * step, ceiling(x[2] / step) * step, by = step)
+    } else ggplot2::waiver()
+    p <- tryCatch(
+      p + ggplot2::scale_y_continuous(
+        limits = c(custom_cfg$y_min %||% NA_real_, custom_cfg$y_max %||% NA_real_),
+        breaks = breaks_fn
+      ),
+      error = function(e) p
+    )
+  }
+  if (has_x) {
+    p <- tryCatch(
+      p + ggplot2::scale_x_continuous(
+        limits = c(custom_cfg$x_min %||% NA_real_, custom_cfg$x_max %||% NA_real_)
+      ),
+      error = function(e) p
+    )
+  }
 
   p
 }

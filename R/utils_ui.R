@@ -113,6 +113,14 @@ gw_success_card <- function(message) {
   )
 }
 
+#' Parse an optional axis limit from a textInput (empty or non-numeric -> NULL)
+#' @noRd
+parse_lim <- function(x) {
+  if (is.null(x) || !nchar(trimws(x %||% ""))) return(NULL)
+  v <- suppressWarnings(as.numeric(x))
+  if (is.na(v)) NULL else v
+}
+
 #' A toggle + conditionally revealed content block
 #'
 #' Renders a checkbox switch; when checked, `content` is shown.
