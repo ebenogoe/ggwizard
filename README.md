@@ -1,6 +1,11 @@
 # ggWizard
 
-**Create beautiful ggplot2 charts -- no R required.**
+[![R-universe](https://ebenogoe.r-universe.dev/badges/ggwizard)](https://ebenogoe.r-universe.dev/ggwizard)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![GitHub last commit](https://img.shields.io/github/last-commit/ebenogoe/ggwizard)](https://github.com/ebenogoe/ggwizard)
+
+**Create beautiful ggplot2 charts -- no R code required.**
 
 ggWizard is a five-step Shiny wizard that lets anyone import a CSV or Excel file, explore the data, configure a publication-ready ggplot2 chart, and export the plot together with a reproducible R script and run log -- all without writing a single line of code.
 
@@ -9,6 +14,12 @@ ggWizard is a five-step Shiny wizard that lets anyone import a CSV or Excel file
 ![ggWizard walkthrough animation](man/figures/demo.svg)
 
 <br>
+
+---
+
+## About
+
+ggWizard was built to lower the barrier to data visualisation for researchers, analysts, and students who work with tabular data but are not fluent in R code. The five-step wizard guides users from raw file to finished chart -- handling import, data inspection, plot configuration, appearance customisation, and export -- all from a browser interface. Outputs include the chart in one or more image formats, a run log, and a self-contained R script that reproduces the plot exactly, so results are always traceable and shareable.
 
 ---
 
@@ -72,11 +83,12 @@ pak::pak("ebenogoe/ggwizard")
 remotes::install_github("ebenogoe/ggwizard")
 ```
 
-**Option 3 -- devtools**
+**Option 3 -- R-universe**
 
 ```r
-# install.packages("devtools")
-devtools::install_github("ebenogoe/ggwizard")
+install.packages("ggwizard",
+  repos = "https://ebenogoe.r-universe.dev"
+)
 ```
 
 ---

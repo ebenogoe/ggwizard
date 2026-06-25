@@ -36,7 +36,7 @@ text{font-family:system-ui,-apple-system,Arial,sans-serif}
 <rect x="403" y="112" width="8" height="44" rx="1" fill="#FFFFFF" opacity="0.9"/>
 <rect x="415" y="127" width="8" height="29" rx="1" fill="#A5B4FC"/>
 <text x="400" y="198" text-anchor="middle" font-size="30" font-weight="700" fill="#1A1D2E">ggWizard</text>
-<text x="400" y="218" text-anchor="middle" font-size="12" fill="#6B7280">Create beautiful ggplot2 charts - no R required</text>
+<text x="400" y="218" text-anchor="middle" font-size="12" fill="#6B7280">Create beautiful ggplot2 charts - no R code required</text>
 <rect x="144" y="244" width="160" height="106" rx="10" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
 <rect x="184" y="260" width="40" height="40" rx="10" fill="#EEF2FF"/>
 <polygon points="196,274 210,280 196,286" fill="#4F46E5"/>
