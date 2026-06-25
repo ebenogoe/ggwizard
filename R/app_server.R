@@ -61,6 +61,10 @@ app_server <- function(input, output, session) {
   # Drive the wizard step navset (screen switch is handled by each module via rv$screen)
   shiny::observeEvent(rv$step, {
     bslib::nav_select("wizard_nav", paste0("s", rv$step), session = session)
+    shinyjs::runjs("setTimeout(function(){
+      var m=document.querySelector('.bslib-sidebar-layout > .bslib-main');
+      if(m) m.scrollTop=0; window.scrollTo(0,0);
+    },50);")
   })
 
   # Render wizard stepper in the sidebar
