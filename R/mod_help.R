@@ -54,14 +54,44 @@ mod_help_ui <- function(id) {
     shiny::p("On the Export step, enable 'R script' to save a self-contained R file that reproduces your plot exactly.
              You can open it in RStudio and run it directly - no ggWizard needed."),
 
+    shiny::h4("Filtering and cleaning your data"),
+    shiny::p("The Filter and QC step (step 3) is optional - click Skip to go straight to plotting with the original data. If you do want to clean the data first, three tools are available:"),
+    shiny::tags$ul(
+      class = "mb-3",
+      shiny::tags$li(shiny::strong("Column exclusion"), " - Uncheck any columns you do not need. They will be hidden from the plot configuration step onwards."),
+      shiny::tags$li(shiny::strong("Outlier detection"), " - Select which numeric columns to scan and set an SD threshold (default 3). Any row where the absolute z-score exceeds the threshold in at least one column is flagged. You can then choose to remove those rows or keep them."),
+      shiny::tags$li(shiny::strong("Replicate CV QC"), " - Choose a grouping column (e.g. treatment, sample ID) and a numeric measurement column. ggWizard computes the coefficient of variation (CV = SD / mean x 100%) within each group. Groups above your CV threshold are flagged, and you can remove them entirely.")
+    ),
+    shiny::p("The filter summary card shows the original and current data dimensions side by side. Use the Reset button to undo all filters at any time. You can also download the filtered data as a CSV to inspect it in Excel before continuing."),
+
+    shiny::h4("Advanced axis and margin controls"),
+    shiny::p("In the Grid and axes section on the Customise step you can:"),
+    shiny::tags$ul(
+      class = "mb-3",
+      shiny::tags$li("Set a fixed lower and/or upper limit for the Y axis - leave either blank to keep it automatic."),
+      shiny::tags$li("Set a Y-axis break interval to control tick spacing (e.g. 10 places ticks at 0, 10, 20...)."),
+      shiny::tags$li("Set fixed limits for the X axis when it is a continuous (numeric) variable."),
+      shiny::tags$li("Adjust the plot margins (Top, Right, Bottom, Left in points) to control whitespace around the chart panel.")
+    ),
+
+    shiny::h4("Box plot options"),
+    shiny::p("When a Box plot type is selected, the Geometry options section on the Customise step offers:"),
+    shiny::tags$ul(
+      class = "mb-3",
+      shiny::tags$li(shiny::strong("Show outlier points"), " - Display individual outlier observations as dots (on by default)."),
+      shiny::tags$li(shiny::strong("Show median line"), " - Toggle the horizontal median bar inside each box."),
+      shiny::tags$li(shiny::strong("Overlay mean diamond"), " - Overlay a diamond-shaped point at the group mean.")
+    ),
+
     shiny::h4("Font sizes"),
     shiny::p("Use the Size template setting (Small / Medium / Large / Extra Large) on the Customise step.
              The template sets all text sizes proportionally - the chart title is always larger than axis labels,
              which are larger than tick labels. You do not need to set each element individually."),
 
     shiny::h4("Exporting a high-resolution image"),
-    shiny::p("On the Export step, select High (300 dpi) and increase the width and height to at least 8 x 6 inches.
-             For most journals and presentations, PNG at 300 dpi is the recommended format."),
+    shiny::p("On the Export step, select High (600 dpi) and increase the width and height to at least 8 x 6 inches.
+             For most journals and presentations, PNG at 300 dpi or higher is the recommended format.
+             Use the Fullscreen button on the Final plot card to inspect the chart at full resolution before saving."),
 
     shiny::hr(),
 

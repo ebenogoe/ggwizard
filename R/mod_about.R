@@ -49,13 +49,37 @@ mod_about_ui <- function(id) {
       "with a description of what went wrong."
     ),
 
-    shiny::p(
-      class = "text-muted small mt-4",
-      sprintf("ggWizard version %s", tryCatch(as.character(utils::packageVersion("ggwizard")), error = function(e) "dev"))
+    shiny::hr(),
+
+    shiny::div(
+      class = "d-flex justify-content-between align-items-end flex-wrap gap-3 mt-3",
+      shiny::div(
+        shiny::p(
+          shiny::strong("Ebenezer Ogoe"),
+          class = "mb-1"
+        ),
+        shiny::p(
+          shiny::tags$a(href = "mailto:ebenezerogoe@gmail.com", "ebenezerogoe@gmail.com",
+                        class = "text-muted"),
+          " | ",
+          shiny::tags$a(href = "https://github.com/ebenogoe", "github.com/ebenogoe",
+                        target = "_blank", class = "text-muted"),
+          class = "small mb-1"
+        ),
+        shiny::p(
+          sprintf("ggWizard version %s",
+                  tryCatch(as.character(utils::packageVersion("ggwizard")), error = function(e) "dev")),
+          class = "small text-muted mb-0"
+        )
+      ),
+      shiny::p(
+        "\u00a9 2026 Ebenezer Ogoe. All rights reserved.",
+        class = "small text-muted mb-0"
+      )
     ),
 
     shiny::actionButton(ns("home"), shiny::tagList(bsicons::bs_icon("house"), " Back to home"),
-                        class = "btn-outline-secondary mt-2")
+                        class = "btn-outline-secondary mt-3")
   )
 }
 

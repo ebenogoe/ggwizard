@@ -7,7 +7,7 @@
 
 **Create beautiful ggplot2 charts -- no R code required.**
 
-ggWizard is a five-step Shiny wizard that lets anyone import a CSV or Excel file, explore the data, configure a publication-ready ggplot2 chart, and export the plot together with a reproducible R script and run log -- all without writing a single line of code.
+ggWizard is a six-step Shiny wizard that lets anyone import a CSV or Excel file, preview and clean the data, configure a publication-ready ggplot2 chart, and export the plot together with a reproducible R script and run log -- all without writing a single line of code.
 
 <br>
 
@@ -29,6 +29,14 @@ ggWizard is a five-step Shiny wizard that lets anyone import a CSV or Excel file
 - Scrollable column browser with type badges and sample values
 - Full data preview table (first 2,000 rows, sortable and searchable)
 
+**Filter and QC** *(optional -- skip to go straight to plotting)*
+- Column exclusion: deselect any columns you do not need downstream
+- Outlier detection by Z-score: select which numeric columns to scan, set an SD threshold (default 3), flag rows where any selected column exceeds it, then choose to remove or keep them
+- Replicate variance QC: select a grouping column and a measurement column, compute CV (SD / mean x 100%) within each group, flag groups above a threshold, and optionally remove them
+- Before/after dimensions summary showing rows and columns removed
+- Download the filtered dataset as a CSV (Excel-compatible)
+- Reset button to undo all filters and restore the original data
+
 **Configure plot**
 - Eight plot types: Bar, Line, Time Series, Scatter, Histogram, Box, Violin, Area
 - Dynamic variable mapping (X, Y, Group/Color, Facet)
@@ -42,11 +50,13 @@ ggWizard is a five-step Shiny wizard that lets anyone import a CSV or Excel file
 - Safe cross-platform font faces: Arial, Helvetica, Calibri, Times New Roman, Georgia, Courier New, Palatino
 - Five base themes: Minimal, Classic, Dark, Light, Void
 - Seven-color palette presets plus Viridis and ColorBrewer options
-- Separate major and minor gridline toggles
-- Axis line toggle (default on)
-- Plot-type-specific geometry controls (line width, point size/shape, bar width, histogram bins, outlier display)
+- Separate major and minor gridline toggles, axis line toggle
+- X-axis label angle (horizontal, 45 degrees, vertical)
+- Y-axis range (min/max) and break interval; X-axis range for continuous axes
+- Plot margins (Top, Right, Bottom, Left in points)
+- Box plot options: outlier points, median line, mean diamond overlay
+- Plot-type-specific geometry controls (line width, point size/shape, bar width, histogram bins)
 - Legend position and title override
-- Facet strip borders and headers applied automatically
 
 **Export**
 - Save to a timestamped output folder (`ggwizard_YYYYMMDD_HHMMSS/`)
@@ -54,6 +64,7 @@ ggWizard is a five-step Shiny wizard that lets anyone import a CSV or Excel file
 - DPI presets: Low (150), Medium (300), High (600)
 - Configurable width and height in inches
 - Optional extras: R script, run log, interactive HTML (plotly)
+- Fullscreen preview button on the Final plot card
 - Individual download buttons for plot, script, and log without saving to disk
 - Resume button in the top bar to return to your last wizard step after visiting Help or About
 
@@ -119,16 +130,17 @@ It contains three sheets of bacterial monitoring data (simulated) from eight sit
 | ggplot2 | Plot rendering |
 | plotly | Interactive plot output |
 | readxl, readr | File import (Excel and CSV) |
-| DT | Scrollable data preview tables |
-| shinyWidgets | Toggle buttons, radio buttons, material switches |
+| DT | Scrollable data preview and QC result tables |
+| shinyWidgets | Toggle buttons, radio buttons, material switches, picker inputs |
 | shinyFiles | Output folder picker |
 | shinybusy | Modal spinners |
-| shinyjs | Toggle-then-reveal controls |
-| colourpicker | Colour input widget |
+| shinyjs | Toggle-then-reveal controls, fullscreen trigger |
 | fontawesome | Icons throughout the UI |
 | bsicons | Additional Bootstrap icons |
-| fs, zip | File system operations and archiving |
-| rlang, scales | Programmatic plot construction |
+| htmlwidgets | Interactive HTML export (plotly widget) |
+| fs | File system operations |
+| rlang | Programmatic plot construction |
+| stats, utils | Z-score and CV computation, CSV download |
 
 ---
 
@@ -138,4 +150,4 @@ MIT. See [LICENSE](LICENSE) for details.
 
 ---
 
-*Built with [golem](https://thinkr-open.github.io/golem/) and [ggplot2](https://ggplot2.tidyverse.org/).*
+*Built with [golem](https://thinkr-open.github.io/golem/) and [ggplot2](https://ggplot2.tidyverse.org/). Created by [Ebenezer Ogoe](mailto:ebenezerogoe@gmail.com).*
