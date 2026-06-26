@@ -181,7 +181,14 @@ apply_theme <- function(p, cfg) {
     axis.title    = ggplot2::element_text(size = sz_tpl$axis_title, family = font_fam),
     axis.text     = ggplot2::element_text(size = sz_tpl$axis_text,  family = font_fam),
     legend.text   = ggplot2::element_text(size = sz_tpl$legend,     family = font_fam),
-    plot.caption  = ggplot2::element_text(size = sz_tpl$caption,    family = font_fam, hjust = 1)
+    plot.caption  = ggplot2::element_text(size = sz_tpl$caption,    family = font_fam, hjust = 1),
+    plot.margin   = ggplot2::margin(
+      t = cfg$margin_t %||% 5,
+      r = cfg$margin_r %||% 5,
+      b = cfg$margin_b %||% 5,
+      l = cfg$margin_l %||% 5,
+      unit = "pt"
+    )
   )
 
   p + grid_overrides

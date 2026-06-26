@@ -88,9 +88,19 @@ mod_export_ui <- function(id) {
       shiny::div(
         # Plot thumbnail
         bslib::card(
-          bslib::card_header(shiny::strong("Final plot")),
+          bslib::card_header(
+            shiny::div(
+              class = "d-flex justify-content-between align-items-center",
+              shiny::strong("Final plot"),
+              shiny::actionButton(
+                ns("fullscreen_btn"),
+                shiny::tagList(bsicons::bs_icon("fullscreen"), " Fullscreen"),
+                class = "btn-outline-secondary btn-sm"
+              )
+            )
+          ),
           bslib::card_body(
-            shiny::uiOutput(ns("plot_preview"))
+            shiny::div(id = ns("plot_preview_wrap"), shiny::uiOutput(ns("plot_preview")))
           )
         ),
         # Log preview
@@ -141,6 +151,17 @@ mod_export_server <- function(id, rv) {
       if (is.integer(input$dir_btn)) return(NULL)
       roots <- c(Home = fs::path_home(), getwd = getwd())
       shinyFiles::parseDirPath(roots, input$dir_btn)
+    })
+
+    shiny::observeEvent(input$fullscreen_btn, {
+      shinyjs::runjs(sprintf(
+        "var el = document.getElementById('%s');
+         if (el) {
+           var req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
+           if (req) req.call(el);
+         }",
+        session$ns("plot_preview_wrap")
+      ))
     })
 
     output$dir_display <- shiny::renderText({

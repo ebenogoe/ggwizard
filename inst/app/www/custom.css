@@ -493,28 +493,18 @@ table.dataTable tbody tr:hover {
 }
 
 /* ── bslib sidebar layout — offset from fixed topbar ────────── */
-/*
- * bslib applies `position: sticky; top: 0; height: 100vh` to the sidebar
- * panel, which causes it to sit behind the fixed topbar. Override so the
- * sticky threshold and height both account for the navbar.
- */
-.bslib-sidebar-layout > .bslib-sidebar-panel {
+/* Sidebar: sticky below the fixed navbar, scrolls independently */
+.bslib-sidebar-layout > .sidebar {
+  position: sticky !important;
   top: var(--gw-topbar-h) !important;
-  max-height: calc(100vh - var(--gw-topbar-h)) !important;
+  height: calc(100vh - var(--gw-topbar-h)) !important;
+  overflow-y: auto;
+  align-self: flex-start !important;
 }
 
-/* Sidebar inner scroll area */
-.bslib-sidebar-layout .sidebar-content {
-  top: var(--gw-topbar-h) !important;
-  max-height: calc(100vh - var(--gw-topbar-h)) !important;
-  overflow-y: auto;
-}
-
-/* Main panel: push content down so the first element clears the navbar */
-.bslib-sidebar-layout > .bslib-main {
-  padding-top: 20px !important;
-  overflow-y: auto;
-  max-height: calc(100vh - var(--gw-topbar-h) - 8px);
+/* Main panel: push content below the fixed navbar */
+.bslib-sidebar-layout > .main {
+  padding-top: calc(var(--gw-topbar-h) + 20px) !important;
 }
 
 /* Anchor-scroll / programmatic scroll lands below the navbar */

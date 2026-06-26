@@ -110,6 +110,18 @@ mod_customize_ui <- function(id) {
             col_widths = c(6, 6),
             shiny::textInput(ns("x_min"), label = NULL, placeholder = "Min (auto)"),
             shiny::textInput(ns("x_max"), label = NULL, placeholder = "Max (auto)")
+          ),
+          shiny::hr(class = "my-2"),
+          shiny::tags$label(
+            gw_tooltip("Plot margins (pt)", "Space between the plot panel and the outer edge. T = top, R = right, B = bottom, L = left."),
+            class = "form-label small fw-semibold d-block"
+          ),
+          bslib::layout_columns(
+            col_widths = c(3, 3, 3, 3),
+            shiny::numericInput(ns("margin_t"), "T", value = 5,  min = 0, max = 100, step = 1),
+            shiny::numericInput(ns("margin_r"), "R", value = 5,  min = 0, max = 100, step = 1),
+            shiny::numericInput(ns("margin_b"), "B", value = 5,  min = 0, max = 100, step = 1),
+            shiny::numericInput(ns("margin_l"), "L", value = 5,  min = 0, max = 100, step = 1)
           )
         ),
 
@@ -213,7 +225,11 @@ mod_customize_server <- function(id, rv) {
         y_max            = parse_lim(input$y_max),
         y_break_step     = parse_lim(input$y_break_step),
         x_min            = parse_lim(input$x_min),
-        x_max            = parse_lim(input$x_max)
+        x_max            = parse_lim(input$x_max),
+        margin_t         = input$margin_t %||% 5,
+        margin_r         = input$margin_r %||% 5,
+        margin_b         = input$margin_b %||% 5,
+        margin_l         = input$margin_l %||% 5
       )
     })
 
