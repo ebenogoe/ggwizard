@@ -55,7 +55,7 @@ mod_about_ui <- function(id) {
       class = "d-flex justify-content-between align-items-end flex-wrap gap-3 mt-3",
       shiny::div(
         shiny::p(
-          shiny::strong("Ebenezer Ogoe"),
+          shiny::strong("Author: Ebenezer Ogoe"),
           class = "mb-1"
         ),
         shiny::p(
